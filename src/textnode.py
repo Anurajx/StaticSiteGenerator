@@ -22,3 +22,9 @@ class TextNode(object):
 
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
+
+def main():
+    node = TextNode("Hello, world!", textType.PLAIN_TEXT)
+    print(node)
+
+#reate a main() function in main.py and call it. The function should create a new TextNode object with some dummy values. Print the object, and make sure it looks like you'd expect. For example, my code printed:
