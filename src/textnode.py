@@ -1,6 +1,8 @@
 from enum import Enum
+from htmlnode import LeafNode
 
 class TextType(Enum):
+    TEXT = "text"
     PLAIN = "plain"
     BOLD = "bold"
     ITALIC = "italic"
@@ -24,22 +26,25 @@ class TextNode(object):
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
 
 
-    def text_node_to_html_node(text_node: TextNode) -> LeafNode: #the thing in front of arrow indicates the return type, although python does not enforce it. TextNode is the argument type
-        if text_node.text_type == TextType.PLAIN: # the thing in front of text_node is the object, and the thing after the dot is the attribute of that object
-            return LeafNode(text_node.text, "p")
+def text_node_to_html_node(text_node: TextNode) -> LeafNode:
+        #the thing in front of arrow indicates the return type, although python does not enforce it. TextNode is the argument type
+        # the thing in front of text_node is the object, and the thing after the dot is the attribute of that object
+        if text_node.text_type == TextType.TEXT:
+            return LeafNode(None, text_node.text)
+        elif text_node.text_type == TextType.PLAIN: 
+            return LeafNode("p", text_node.text)
         elif text_node.text_type == TextType.BOLD:
-            return LeafNode(text_node.text, "b")
+            return LeafNode("b", text_node.text)
         elif text_node.text_type == TextType.ITALIC:
-            return LeafNode(text_node.text, "i")
+            return LeafNode("i", text_node.text)
         elif text_node.text_type == TextType.CODE:
-            return LeafNode(text_node.text, "code")
+            return LeafNode("code", text_node.text)
         elif text_node.text_type == TextType.LINKS:
-            return LeafNode(text_node.text, "a", {"href": text_node.url})
+            return LeafNode("a", text_node.text, {"href": text_node.url})
         elif text_node.text_type == TextType.IMAGES:
-            return LeafNode(text_node.text, "img",{"src": text_node.url})
+            return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
         else:
             raise ValueError("Invalid text type")
-
 
 def main():
     node = TextNode("Hello world", TextType.PLAIN, None)
