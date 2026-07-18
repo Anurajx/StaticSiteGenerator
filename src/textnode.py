@@ -50,7 +50,7 @@ def main():
     node = TextNode("Hello world", TextType.PLAIN, None)
     print(node)
 
-main()
+#main()
 
 # def main():
 #     node = TextNode("Hello, world!", TextType.PLAIN_TEXT)

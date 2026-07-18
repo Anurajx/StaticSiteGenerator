@@ -57,7 +57,7 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("this is a plain text with no tag", TextType.TEXT)
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.value,"this is a plain text with no tag")
-        self.assertEqual(html_node.tag, None) # there is likely bug here where leafNode does not allow empty tags but here it has, so when we will convert it to html it will give error
+        self.assertEqual(html_node.tag, None) 
 
 
 if __name__ == "__main__":
