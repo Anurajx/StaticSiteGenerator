@@ -26,6 +26,11 @@ def splitNodeDelimiter(old_nodes: [TextNode], delimiter: str, text_type: TextTyp
                 newNode.append(TextNode(section, text_type))
     return newNode
 
+def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
+    print("complete this tmrw")
+
+def splitNodeLink(old_nodes: [TextNode]) -> list[TextNode]:
+    print("and this too")
 
 
 

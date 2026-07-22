@@ -5,7 +5,7 @@ def extract_markdown_images(text):
     return matchedSubsection
 
 def extract_markdown_links(text):
-    matchedSubsection = re.findall(r"\[(.*?)\]\((.*?)\)",text)
+    matchedSubsection = re.findall(r"(?<!!)\[(.*?)\]\((.*?)\)",text)
     return matchedSubsection
 
 
