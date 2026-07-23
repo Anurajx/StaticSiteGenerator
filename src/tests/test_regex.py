@@ -1,5 +1,6 @@
 import unittest
-from regex import extract_markdown_images, extract_markdown_links
+from regex import extract_markdown_images, extract_markdown_links, splitNodeImage, splitNodeLink
+from textnode import TextNode, TextType
 
 
 class TestRegex(unittest.TestCase):
@@ -46,4 +47,11 @@ class TestRegex(unittest.TestCase):
     def test_extract_with_no_images(self):
         matches = extract_markdown_images("dosa tops burger pizza is comparable")
         self.assertListEqual([],matches)
+
+    # def test_imageNode_extraction(self):
+    #     node= TextNode("wassup bud ![is this the redpill world](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
+    #     newNodeList = splitNodeImage([node])
+    #     print(newNodeList)
+    #     expected = [TextNode("this is a sample text that has an")]
+    #     self.assertEqual(newNodeList, expected)
 
