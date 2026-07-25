@@ -49,9 +49,16 @@ class TestRegex(unittest.TestCase):
         self.assertListEqual([],matches)
 
     # def test_imageNode_extraction(self):
-    #     node= TextNode("wassup bud ![is this the redpill world](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
+    #     node= TextNode("wassup bud ![is this the redpill world image](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
     #     newNodeList = splitNodeImage([node])
     #     print(newNodeList)
-    #     expected = [TextNode("this is a sample text that has an")]
+    #     expected = [('is this the redpill world image', 'https://i.imgur.com/zjjcJKZ.png')]
+    #     self.assertEqual(newNodeList, expected)
+
+    # def test_linkNode_extraction(self):
+    #     node= TextNode("wassup bud [is this the redpill world link](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
+    #     newNodeList = splitNodeLink([node])
+    #     print(newNodeList)
+    #     expected = "[TextNode(wassup bud , TextType.TEXT, None), TextNode(is this the redpill world link, TextType.LINKS, https://i.imgur.com/zjjcJKZ.png)]"
     #     self.assertEqual(newNodeList, expected)
 
