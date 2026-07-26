@@ -18,17 +18,25 @@ def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
             newNodes.append(node)
 
         extractedImages= extract_markdown_images(node.text)
+        print(extractedImages)
         
 
         if len(extractedImages)==0:
             newNodes.append(node)
-        for alt, url in extractedImages:
-            newNodes.append(TextNode(alt, TextType.IMAGES, url))
-        # for i in extractedImages:
-        #     print(i)
-        #     newNodes.append(i)
 
-        #newNodes.append(extractedImages)
+
+        remainingNode= node.text
+        for alt, url in extractedImages:
+            firstRemainingSideNode, remainingNode= remainingNode.split(f"![{alt}]({url})",1)
+            print("THESE ARE THE REMAINING NODES")
+            #print(firstRemainingSideNode)
+            print(remainingNode)
+            if firstRemainingSideNode:
+                newNodes.append(TextNode(firstRemainingSideNode, TextType.TEXT))
+            newNodes.append(TextNode(alt, TextType.IMAGES, url))
+        if remainingNode:
+            newNodes.append(TextNode(remainingNode, TextType.TEXT))
+
 
     return newNodes
 

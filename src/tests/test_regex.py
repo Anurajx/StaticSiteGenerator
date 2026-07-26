@@ -48,13 +48,6 @@ class TestRegex(unittest.TestCase):
         matches = extract_markdown_images("dosa tops burger pizza is comparable")
         self.assertListEqual([],matches)
 
-    # def test_imageNode_extraction(self):
-    #     node= TextNode("wassup bud ![is this the redpill world image](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
-    #     newNodeList = splitNodeImage([node])
-    #     print(newNodeList)
-    #     expected = [('is this the redpill world image', 'https://i.imgur.com/zjjcJKZ.png')]
-    #     self.assertEqual(newNodeList, expected)
-
     # def test_linkNode_extraction(self):
     #     node= TextNode("wassup bud [is this the redpill world link](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT)
     #     newNodeList = splitNodeLink([node])
@@ -62,3 +55,36 @@ class TestRegex(unittest.TestCase):
     #     expected = "[TextNode(wassup bud , TextType.TEXT, None), TextNode(is this the redpill world link, TextType.LINKS, https://i.imgur.com/zjjcJKZ.png)]"
     #     self.assertEqual(newNodeList, expected)
 
+    def test_split_links(self):
+        node = TextNode(
+            "This is text with an [image](https://i.imgur.com/zjjcJKZ.png) and another [second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = splitNodeLink([node])
+        self.assertEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.LINKS, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode("second image", TextType.LINKS, "https://i.imgur.com/3elNhQu.png"),
+            ],
+            new_nodes,
+        )
+    
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = splitNodeImage([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.IMAGES, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode("second image", TextType.IMAGES, "https://i.imgur.com/3elNhQu.png"),
+            ],
+            new_nodes,
+        )
+
+    
