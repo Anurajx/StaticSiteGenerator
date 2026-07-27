@@ -1,11 +1,11 @@
 import re
 from textnode import TextNode, TextType
 
-def extract_markdown_images(text):
+def extract_markdown_image(text):
     matchedSubsection = re.findall(r"!\[(.*?)\]\((.*?)\)",text)
     return matchedSubsection
 
-def extract_markdown_links(text):
+def extract_markdown_link(text):
     matchedSubsection = re.findall(r"(?<!!)\[(.*?)\]\((.*?)\)",text)
     return matchedSubsection
 
@@ -18,24 +18,24 @@ def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
             newNodes.append(node)
             continue
 
-        extractedImages= extract_markdown_images(node.text)
-        #print(extractedImages)
+        extractedImage= extract_markdown_image(node.text)
+        #print(extractedImage)
         
 
-        if len(extractedImages)==0:
+        if len(extractedImage)==0:
             newNodes.append(node)
             continue
 
 
         remainingNode= node.text
-        for alt, url in extractedImages:
+        for alt, url in extractedImage:
             firstRemainingSideNode, remainingNode= remainingNode.split(f"![{alt}]({url})",1)
             #print("THESE ARE THE REMAINING NODES")
             #print(firstRemainingSideNode)
             #print(remainingNode)
             if firstRemainingSideNode:
                 newNodes.append(TextNode(firstRemainingSideNode, TextType.TEXT))
-            newNodes.append(TextNode(alt, TextType.IMAGES, url))
+            newNodes.append(TextNode(alt, TextType.IMAGE, url))
         if remainingNode:
             newNodes.append(TextNode(remainingNode, TextType.TEXT))
 
@@ -52,17 +52,17 @@ def splitNodeLink(old_nodes: [TextNode]) -> list[TextNode]:
             continue
         
 
-        extractedLinks= extract_markdown_links(node.text)
-        #print(extractedLinks)
+        extractedLink= extract_markdown_link(node.text)
+        #print(extractedLink)
         
 
-        if len(extractedLinks)==0:
-            # print(f"SKIPPING EXTRACTION-- {extractedLinks} FOR {old_nodes}")
+        if len(extractedLink)==0:
+            # print(f"SKIPPING EXTRACTION-- {extractedLink} FOR {old_nodes}")
             newNodes.append(node)
             continue
 
         remainingNode= node.text
-        for alt, url in extractedLinks:
+        for alt, url in extractedLink:
             firstRemainingSideNode, remainingNode= remainingNode.split(f"[{alt}]({url})",1)
             #print("THESE ARE THE REMAINING NODES")
             #print(firstRemainingSideNode)
@@ -72,26 +72,26 @@ def splitNodeLink(old_nodes: [TextNode]) -> list[TextNode]:
                 newNodes.append(TextNode(firstRemainingSideNode, TextType.TEXT))
 
 
-            newNodes.append(TextNode(alt, TextType.LINKS, url))
+            newNodes.append(TextNode(alt, TextType.LINK, url))
         if remainingNode:
             newNodes.append(TextNode(remainingNode, TextType.TEXT))
 
-        # for i in extractedLinks:
+        # for i in extractedLink:
         #     print(i)
         #     # sideExtractedNodes= node.text.split(i,1)
         #     newNodes.append(i)
 
 
 
-        #newNodes.append(extractedLinks)
+        #newNodes.append(extractedLink)
 
     return newNodes
 
 def main():
-    # testingMicImages= "hey why are there so many links (outthere) shoudnt ![rick roll](https://i.imgur.com/aKaOqIh.gif) they be (inside) there homes at this ![rick roll](https://i.imgur.com/aKaOqIh.gif) time, links hut"
+    # testingMicImage= "hey why are there so many link (outthere) shoudnt ![rick roll](https://i.imgur.com/aKaOqIh.gif) they be (inside) there homes at this ![rick roll](https://i.imgur.com/aKaOqIh.gif) time, link hut"
     # testingMicText=  "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
-    # t=extract_markdown_images(testingMicImages)
-    # a=extract_markdown_links(testingMicText)
+    # t=extract_markdown_image(testingMicImage)
+    # a=extract_markdown_link(testingMicText)
     node= TextNode("wassup bud [is this the redpill world link1](https://i.imgur.com/zjjcJKZ.png) once again bcs why not ", TextType.TEXT)
     newNodeList = splitNodeLink([node])
     # print(t)

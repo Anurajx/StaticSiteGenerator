@@ -44,7 +44,7 @@ class TestTextNode(unittest.TestCase):
 
         
     def test_textnode_to_html_image(self):
-        node = TextNode("this is a sample image that i took", TextType.IMAGES, url="https://example.com/image.jpg")
+        node = TextNode("this is a sample image that i took", TextType.IMAGE, url="https://example.com/image.jpg")
         expected_html = '<img src="https://example.com/image.jpg" alt="this is a sample image that i took">'
         html_node = text_node_to_html_node(node)
 
