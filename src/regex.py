@@ -16,21 +16,23 @@ def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
             newNodes.append(node)
+            continue
 
         extractedImages= extract_markdown_images(node.text)
-        print(extractedImages)
+        #print(extractedImages)
         
 
         if len(extractedImages)==0:
             newNodes.append(node)
+            continue
 
 
         remainingNode= node.text
         for alt, url in extractedImages:
             firstRemainingSideNode, remainingNode= remainingNode.split(f"![{alt}]({url})",1)
-            print("THESE ARE THE REMAINING NODES")
+            #print("THESE ARE THE REMAINING NODES")
             #print(firstRemainingSideNode)
-            print(remainingNode)
+            #print(remainingNode)
             if firstRemainingSideNode:
                 newNodes.append(TextNode(firstRemainingSideNode, TextType.TEXT))
             newNodes.append(TextNode(alt, TextType.IMAGES, url))
@@ -51,19 +53,20 @@ def splitNodeLink(old_nodes: [TextNode]) -> list[TextNode]:
         
 
         extractedLinks= extract_markdown_links(node.text)
-        print(extractedLinks)
+        #print(extractedLinks)
         
 
         if len(extractedLinks)==0:
+            # print(f"SKIPPING EXTRACTION-- {extractedLinks} FOR {old_nodes}")
             newNodes.append(node)
             continue
 
         remainingNode= node.text
         for alt, url in extractedLinks:
             firstRemainingSideNode, remainingNode= remainingNode.split(f"[{alt}]({url})",1)
-            print("THESE ARE THE REMAINING NODES")
+            #print("THESE ARE THE REMAINING NODES")
             #print(firstRemainingSideNode)
-            print(remainingNode)
+            #print(remainingNode)
 
             if firstRemainingSideNode:
                 newNodes.append(TextNode(firstRemainingSideNode, TextType.TEXT))

@@ -28,5 +28,12 @@ class TestDelimiter(unittest.TestCase):
         expected = [TextNode("this is a sample text that has an ", TextType.TEXT), TextNode("BOLD", TextType.BOLD), TextNode(" block inside of it", TextType.TEXT)]
         self.assertEqual(newNodeList, expected)
 
+
+    def test_only_one_delimiter(self):
+        node= TextNode("this is a sample text that has an **BOLD block inside of it", TextType.TEXT)
+        with self.assertRaises(ValueError):
+            newNodeList= splitNodeDelimiter([node],"**",TextType.BOLD)
+
+
 if __name__ == "__main__":
     unittest.main()

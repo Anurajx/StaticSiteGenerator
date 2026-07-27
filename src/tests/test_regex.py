@@ -87,4 +87,42 @@ class TestRegex(unittest.TestCase):
             new_nodes,
         )
 
+    def test_split_empty_images(self):
+        node = TextNode("this is a test with empty image tags ![]() i guess thats enough but why not test with an empty link node []() good? ",TextType.TEXT)
+        new_nodes= splitNodeImage([node])
+        self.assertListEqual(
+            [
+                TextNode("this is a test with empty image tags ", TextType.TEXT),
+                TextNode("",TextType.IMAGES,""),
+                TextNode(" i guess thats enough but why not test with an empty link node []() good? ", TextType.TEXT)
+            ],
+            new_nodes
+        )
+
+    def test_split_empty_link(self):
+        node = TextNode("this is a test with empty image tags []() i guess thats enough but why not test with an empty link node ![]() good? ",TextType.TEXT)
+        new_nodes= splitNodeLink([node])
+        self.assertListEqual(
+            [
+                TextNode("this is a test with empty image tags ", TextType.TEXT),
+                TextNode("",TextType.LINKS,""),
+                TextNode(" i guess thats enough but why not test with an empty link node ![]() good? ", TextType.TEXT)
+            ],
+            new_nodes
+        )
+
+    def test_split_empty_links_only(self):
+        node = TextNode("[]() []()(())", TextType.TEXT)
+        new_nodes=splitNodeLink([node])
+        self.assertListEqual(
+            [
+                TextNode("", TextType.LINKS,""),
+                TextNode(" ",TextType.TEXT),
+                TextNode("", TextType.LINKS,""),
+                TextNode("(())", TextType.TEXT)
+            ],
+            new_nodes
+        )
+
+
     

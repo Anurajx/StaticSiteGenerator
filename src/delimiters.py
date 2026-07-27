@@ -8,6 +8,7 @@ def splitNodeDelimiter(old_nodes: [TextNode], delimiter: str, text_type: TextTyp
     newNode = []
     #print(node)
     for node in old_nodes:
+        #print(f"specific node is {node}")
         if node.text_type != TextType.TEXT: #Only performs splitting if the text type is raw text
             newNode.append(node)
             continue
@@ -30,7 +31,7 @@ def splitNodeDelimiter(old_nodes: [TextNode], delimiter: str, text_type: TextTyp
 
 
 
-def main():
-    print("holdup boy dads cookin")
-    node = TextNode("This is text block with a `code block` inside of it", TextType.TEXT)
-    new_node= splitNodeDelimiter([node], "`", TextType.CODE)
+# def main():
+#     print("holdup boy dads cookin")
+#     node = TextNode("This is text block with a `code block` inside of it", TextType.TEXT)
+#     new_node= splitNodeDelimiter([node], "`", TextType.CODE)
