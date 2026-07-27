@@ -2,7 +2,7 @@
 
 TEST COVERAGE
 
-## Name Stmts Miss Cover
+Name Stmts Miss Cover
 
 delimiters.py 21 6 71%
 htmlnode.py 50 8 84%
