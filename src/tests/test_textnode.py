@@ -34,7 +34,7 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node, node2)
 
     def test_textnode_to_html(self):
-        node = TextNode("This is a sample text node", TextType.LINKS, url="https://example.com")
+        node = TextNode("This is a sample text node", TextType.LINK, url="https://example.com")
         expected_html = '<a href="https://example.com">This is a sample text node</a>'
         html_node = text_node_to_html_node(node)
         #print("HTML Node:", html_node)  # Debugging line to print the HTML node
