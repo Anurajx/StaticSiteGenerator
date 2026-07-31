@@ -11,7 +11,7 @@ def extract_markdown_link(text):
 
 
 #implementing actuall extractions logic
-def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
+def splitNodeImage(old_nodes: list[TextNode]) -> list[TextNode]:
     newNodes=[]
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
@@ -20,7 +20,7 @@ def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
 
         extractedImage= extract_markdown_image(node.text)
         #print(extractedImage)
-        
+
 
         if len(extractedImage)==0:
             newNodes.append(node)
@@ -43,18 +43,18 @@ def splitNodeImage(old_nodes: [TextNode]) -> list[TextNode]:
     return newNodes
 
 
-def splitNodeLink(old_nodes: [TextNode]) -> list[TextNode]:
+def splitNodeLink(old_nodes: list[TextNode]) -> list[TextNode]:
     newNodes=[]
     for node in old_nodes:
 
         if node.text_type != TextType.TEXT:
             newNodes.append(node)
             continue
-        
+
 
         extractedLink= extract_markdown_link(node.text)
         #print(extractedLink)
-        
+
 
         if len(extractedLink)==0:
             # print(f"SKIPPING EXTRACTION-- {extractedLink} FOR {old_nodes}")
@@ -99,4 +99,3 @@ def main():
     print(newNodeList)
 
 # main()
-

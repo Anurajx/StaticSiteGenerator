@@ -1,5 +1,5 @@
 import unittest
-from regex import extract_markdown_image, extract_markdown_link, splitNodeImage, splitNodeLink
+from regexExtract import extract_markdown_image, extract_markdown_link, splitNodeImage, splitNodeLink
 from textnode import TextNode, TextType
 
 
@@ -16,7 +16,7 @@ class TestRegex(unittest.TestCase):
             "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and once again ![image](https://i.imgur.com/zjjcJKZ.png) okay that's enough"
         )
         self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png"), ("image", "https://i.imgur.com/zjjcJKZ.png")], matches)
-    
+
     def test_extract_multiple_markdown_link(self):
         matches = extract_markdown_link("This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)")
         self.assertListEqual([("to boot dev", "https://www.boot.dev"), ("to youtube", "https://www.youtube.com/@bootdotdev")], matches)
@@ -26,7 +26,7 @@ class TestRegex(unittest.TestCase):
             "This is text with an ![](https://i.imgur.com/zjjcJKZ.png)"
         )
         self.assertListEqual([("", "https://i.imgur.com/zjjcJKZ.png")], matches)
-    
+
     def test_extract_image_noInfo(self):
         matches = extract_markdown_image(
             "This is text with an ![]()"
@@ -70,7 +70,7 @@ class TestRegex(unittest.TestCase):
             ],
             new_nodes,
         )
-    
+
     def test_split_image(self):
         node = TextNode(
             "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
@@ -123,6 +123,3 @@ class TestRegex(unittest.TestCase):
             ],
             new_nodes
         )
-
-
-    

@@ -42,7 +42,7 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(html_node.tag, "a")
         self.assertEqual(html_node.props, {"href": "https://example.com"})
 
-        
+
     def test_textnode_to_html_image(self):
         node = TextNode("this is a sample image that i took", TextType.IMAGE, url="https://example.com/image.jpg")
         expected_html = '<img src="https://example.com/image.jpg" alt="this is a sample image that i took">'
@@ -57,7 +57,7 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("this is a plain text with no tag", TextType.TEXT)
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.value,"this is a plain text with no tag")
-        self.assertEqual(html_node.tag, None) 
+        self.assertEqual(html_node.tag, None)
 
 
 if __name__ == "__main__":

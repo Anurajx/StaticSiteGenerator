@@ -1,10 +1,10 @@
 from textnode import TextNode, TextType
 
 
-def splitNodeDelimiter(old_nodes: [TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
-    
-    
-    
+def splitNodeDelimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
+
+
+
     newNode = []
     #print(node)
     for node in old_nodes:
@@ -17,7 +17,7 @@ def splitNodeDelimiter(old_nodes: [TextNode], delimiter: str, text_type: TextTyp
 
         if len(section) % 2 == 0:
             raise ValueError("There is no closing delimiter -- {delimiter}")
-        
+
         for i, section in enumerate(section):
             if section == "":
                 continue

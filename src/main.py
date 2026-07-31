@@ -1,5 +1,5 @@
 from textnode import TextNode, TextType
-from regex import splitNodeImage, splitNodeLink
+from regexExtract import splitNodeImage, splitNodeLink
 from delimiters import splitNodeDelimiter
 
 def text_to_textnodes(text): #AGGREGATOR
@@ -14,7 +14,7 @@ def text_to_textnodes(text): #AGGREGATOR
     testNode= splitNodeImage(testNode)
     #print(f"TESTNODE MADE- {testNode}")
     testNode= splitNodeLink(testNode)
-   
+
     return testNode
 
 
