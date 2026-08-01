@@ -30,18 +30,31 @@ class BlockType(Enum):
 def block_to_blockType(block):
     print(block)
     print("i guess nothing ")
-    typeFound = re.findall(r"^#{1,6}\s+.*$", block)
-    return typeFound
-    
-    
-    
+    typeHeading = re.findall(r"^#{1,6}\s+.*$", block)
+    if typeHeading:
+        return BlockType.HEADING
+    typeCode = re.findall(r"```$", block)
+    if typeCode:
+        return BlockType.CODE
+    typeQuote = re.findall(r">.*$", block)
+    if typeQuote:
+        return BlockType.QUOTE
+    typeUnorderedList = re.findall(r"- .*$", block)
+    if typeUnorderedList:
+        return BlockType.UNORDERED_LIST
+    typeOrderedList = re.findall(r"\d+\. .*$", block)
+    if typeOrderedList:
+        return BlockType.ORDERED_LIST
+    return BlockType.PARAGRAPH
 
-a=block_to_blockType("## hi")
-print(a)
-# def main():
-#     print("this is the main function")
-#     md = """This is **bolded** paragraph
-
+def main():
+    a=block_to_blockType(" 6. hello world")
+    print(a)
+    
+    # def main():
+    #     print("this is the main function")
+    #     md = """This is **bolded** paragraph
+main()
 #     This is another paragraph with _italic_ text and `code` here
 #     This is the same paragraph on a new line
 
