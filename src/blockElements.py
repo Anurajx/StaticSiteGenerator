@@ -28,33 +28,38 @@ class BlockType(Enum):
     PARAGRAPH = "paragraph"
 
 def block_to_blockType(block):
-    print(block)
-    print("i guess nothing ")
-    typeHeading = re.findall(r"^#{1,6}\s+.*$", block)
-    if typeHeading:
+    
+    if re.match(r"^#{1,6} .+$", block):
         return BlockType.HEADING
-    typeCode = re.findall(r"```$", block)
-    if typeCode:
+    
+    if block.startswith("```\n") and block.endswith("\n```"):
         return BlockType.CODE
-    typeQuote = re.findall(r">.*$", block)
-    if typeQuote:
+    
+    subParts = block.split("\n")
+    if all(line.startswith(">") for line in subParts):
         return BlockType.QUOTE
-    typeUnorderedList = re.findall(r"- .*$", block)
-    if typeUnorderedList:
+    
+    if all(line.startswith("-") for line in subParts):
         return BlockType.UNORDERED_LIST
-    typeOrderedList = re.findall(r"\d+\. .*$", block)
-    if typeOrderedList:
-        return BlockType.ORDERED_LIST
+    
+    for i, line in enumerate(subParts, start=1):
+        if not line.startswith(fr"{i}. "):
+            break
+        else:
+            return BlockType.ORDERED_LIST
+        
+    
     return BlockType.PARAGRAPH
 
-def main():
-    a=block_to_blockType(" 6. hello world")
-    print(a)
+# def main():
+#     a=block_to_blockType("""1. hello 
+# 2. world""")
+#     print(a)
     
-    # def main():
-    #     print("this is the main function")
-    #     md = """This is **bolded** paragraph
-main()
+#     # def main():
+#     #     print("this is the main function")
+#     #     md = """This is **bolded** paragraph
+# main()
 #     This is another paragraph with _italic_ text and `code` here
 #     This is the same paragraph on a new line
 
