@@ -1,3 +1,7 @@
+## Project Overview
+
+A lightweight Server-Side Rendering (SSR) application built in Python that converts Markdown into static HTML pages. The project focuses on parsing Markdown syntax, generating HTML through custom node structures, and validating functionality with comprehensive unit tests.
+
 ## Test Coverage
 
 The project is tested using Python's `coverage` module.
