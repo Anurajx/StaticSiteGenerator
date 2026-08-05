@@ -2,6 +2,10 @@ from textnode import TextNode, TextType
 from regexExtract import splitNodeImage, splitNodeLink
 from delimiters import splitNodeDelimiter
 
+
+def markdown_to_html_node(markdown):
+    print("your time will come")
+
 def text_to_textnodes(text): #AGGREGATOR
     testNode= TextNode(text, TextType.TEXT)
     #print(f"TESTNODE MADE- {testNode}")
