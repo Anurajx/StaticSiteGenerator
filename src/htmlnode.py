@@ -58,7 +58,7 @@ class ParentNode(HTMLNode):
             
 
         props_str = self.props_to_html()
-        children_html = " ".join([child.to_html() for child in self.children]) #recursively calling to_html on each child node
+        children_html = "".join([child.to_html() for child in self.children]) #recursively calling to_html on each child node
         return f"<{self.tag} {props_str}>{children_html}</{self.tag}>"
 
 

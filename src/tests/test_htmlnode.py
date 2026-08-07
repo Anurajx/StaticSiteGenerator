@@ -61,7 +61,7 @@ class TestHTMLParentNode(unittest.TestCase):
         child1 = LeafNode(tag="p", value="Hello", props={"class": "child"})
         child2 = LeafNode(tag="p", value="World", props={"class": "child"})
         parent = ParentNode(tag="div", children=[child1, child2], props={"class": "parent"})
-        expected_html = '<div class="parent"><p class="child">Hello</p> <p class="child">World</p></div>'
+        expected_html = '<div class="parent"><p class="child">Hello</p><p class="child">World</p></div>'
         self.assertEqual(parent.to_html(), expected_html)
     
     def test_parentNodeWithNoChildren(self):
@@ -77,7 +77,7 @@ class TestHTMLParentNode(unittest.TestCase):
     def test_parentNodeWithNoProps(self):
         child1 = LeafNode(tag="p", value="Hello", props={"class": "child"})
         parent = ParentNode(tag="div", children=[child1, child1, child1], props=None)
-        expected_html = '<div ><p class="child">Hello</p> <p class="child">Hello</p> <p class="child">Hello</p></div>'
+        expected_html = '<div ><p class="child">Hello</p><p class="child">Hello</p><p class="child">Hello</p></div>'
         self.assertEqual(parent.to_html(), expected_html)
 
     def test_grandparentNode(self):
@@ -86,7 +86,7 @@ class TestHTMLParentNode(unittest.TestCase):
         child1 = ParentNode(tag="div", children=[grandchild1], props={"class": "child"})
         child2 = ParentNode(tag="div", children=[grandchild2], props={"class": "child"})
         parent = ParentNode(tag="section", children=[child1, child2], props={"class": "parent"})
-        expected_html = '<section class="parent"><div class="child"><span class="grandchild">Grandchild 1</span></div> <div class="child"><span class="grandchild">Grandchild 2</span></div></section>'
+        expected_html = '<section class="parent"><div class="child"><span class="grandchild">Grandchild 1</span></div><div class="child"><span class="grandchild">Grandchild 2</span></div></section>'
         self.assertEqual(parent.to_html(), expected_html)
 
     
