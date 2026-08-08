@@ -1,86 +1,65 @@
-from textnode import TextNode, TextType
-from regexExtract import splitNodeImage, splitNodeLink
-from delimiters import splitNodeDelimiter
-from blockElements import markdown_to_blocks, block_to_blockType, BlockType
-from htmlnode import HTMLNode, ParentNode, LeafNode
-from textnode import text_node_to_html_node
+import os
+import shutil
+import pathlib
+import re
 
-
-def markdown_to_html_node(markdown):
-    #print("your time will come")
-    processedBlocks = markdown_to_blocks(markdown)
-    #print(f"processedBlocks: {processedBlocks}")
-    children = []
-    for block in processedBlocks:
-        block_type = block_to_blockType(block)
-        childs = block_to_html_node_helper(block, block_type)
-        #print(f"CHILD    -  {childs}")
-        children.append(childs)
-    return ParentNode("div", children)
-
-def block_to_html_node_helper(block, block_type):
-    if block_type == BlockType.PARAGRAPH:
-        block = block.replace("\n", " ")
-        return ParentNode("p", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
-    elif block_type == BlockType.HEADING:
-        return ParentNode("h1", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
+def extract_heading(markdown):
+    heading = re.findall(r"^# (.*?)$", markdown, re.MULTILINE) 
     
-    elif block_type == BlockType.QUOTE:
-        return ParentNode("blockquote", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
+    if not heading:
+        raise Exception("There is no H1 heading in markdown")
     
-    elif block_type == BlockType.CODE: #For ``` cases 
-        return ParentNode("pre", [LeafNode("code", block.strip("```"))])
+    return heading[0].strip()
     
-    elif block_type == BlockType.UNORDERED_LIST:
-        block = block.split("\n")
-        list_items = []
-        for item in block:
-            list_items.append(LeafNode("li", item))
-        return ParentNode("ul", list_items)
     
-    elif block_type == BlockType.ORDERED_LIST:
-        block = block.split("\n")
-        list_items = []
-        for item in block:
-            list_items.append(LeafNode("li", item))
-        return ParentNode("ol", list_items)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def staticToPublicFileCopy():
+    #print("Hello, World!")
+    publicPath = pathlib.Path(__file__).parent.parent / "public"
+    staticPath = pathlib.Path(__file__).parent.parent / "static"
+    
+    if(os.path.exists(publicPath) and os.path.isdir(publicPath)):
+        # print(os.listdir(publicPath))
+        # print(f"Deleting public folder at: {publicPath}")
+        shutil.rmtree(publicPath)
+        os.makedirs(publicPath)
+    if(os.path.exists(staticPath) and os.path.isdir(staticPath)):
+        #print(os.listdir(staticPath))
+        recursiveCopy(staticPath,publicPath)
+        # shutil.copytree(staticPath, publicPath, dirs_exist_ok=True)  #this would also work just without logging file change
+    #print(f"Deleting public folder at: {publicPath}, and static folder at: {staticPath}")
+
+def recursiveCopy(src, dest):
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dest, item)
         
-        
-        
-        
+        if os.path.isdir(s):
+            os.mkdir(d)
+            recursiveCopy(s,d)
+        else:
+            shutil.copy(s,d)
+            #print(f"MOVED {s} ---> {d}")
+            
+            
 
-
-def text_to_textnodes(text): #AGGREGATOR
-    testNode= TextNode(text, TextType.TEXT)
-    #print(f"TESTNODE MADE- {testNode}")
-    testNode= splitNodeDelimiter([testNode],"`", TextType.CODE)
-    #print(f"TESTNODE MADE- {testNode}")
-    testNode= splitNodeDelimiter(testNode,"**", TextType.BOLD)
-    #print(f"TESTNODE MADE- {testNode}")
-    testNode= splitNodeDelimiter(testNode,"_", TextType.ITALIC)
-    #print(f"TESTNODE MADE- {testNode}")
-    testNode= splitNodeImage(testNode)
-    #print(f"TESTNODE MADE- {testNode}")
-    testNode= splitNodeLink(testNode)
-
-    return testNode
-
-
-
-
-# def main():
-#     md = """
-#                     This is **bolded** paragraph
-
-#                     This is another paragraph with _italic_ text and `code here`
-#                     This is the same paragraph on a new line wassup bud [is this the redpill world link1](https://i.imgur.com/zjjcJKZ.png) once again bcs why not 
-
-#                     - This is a list
-#                     - with items
-                    
-                    
-#                     """
-#     blocks = markdown_to_html_node(md)
-#     # a=text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
-#     # print(a)
-# main()
+def main():
+    staticToPublicFileCopy()    
+    
+main()
