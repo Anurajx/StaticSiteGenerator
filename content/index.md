@@ -1,4 +1,4 @@
-# Tolkien Fan Club
+# Anuraj Upadhyay
 
 ![JRR Tolkien sitting](/images/tolkien.png)
 

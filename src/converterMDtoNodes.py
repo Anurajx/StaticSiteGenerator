@@ -24,37 +24,62 @@ def markdown_to_html_node(markdown):
 
 def block_to_html_node_helper(block, block_type):
     if block_type == BlockType.PARAGRAPH:
-        block = block.replace("\n", " ")
+        #block = block.replace("\n", " ")
         return ParentNode("p", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
     elif block_type == BlockType.HEADING:
-        return ParentNode("h1", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
+        # block = block.replace("#","")
+        hashLength= len(block) - len(block.lstrip("#"))
+        blockWithoutHash = block[hashLength:].strip()
+        return ParentNode(f"h{hashLength}", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(blockWithoutHash)])
     
     elif block_type == BlockType.QUOTE:
+        lines = block.split("\n")
+        # ArrowLength = len(lines) - len(lines.lstrip(">"))
+        # linesWithoutArrow = lines[ArrowLength:]
+        lines = [line.lstrip(">") for line in lines]
+        block= "\n".join(lines)
+        #print(block)
+
         return ParentNode("blockquote", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
     
     elif block_type == BlockType.CODE: #For ``` cases 
-        return ParentNode("pre", [LeafNode("code", block.strip("```"))])
+        #print(block)
+        blocks = block.split("\n")
+        #print(blocks)
+        block= "\n".join(blocks[1:-1])
+        #print(block)
+        return ParentNode("pre", [LeafNode("code", block)])
     
     elif block_type == BlockType.UNORDERED_LIST:
-        block = block.split("\n")
+        blocks = block.split("\n")
         list_items = []
-        for item in block:
-            list_items.append(LeafNode("li", item))
+        
+        for item in blocks:
+            item= item[2:]
+            text_nodes= text_to_textnodes(item)
+            #print(text_nodes)
+            html_nodes= [text_node_to_html_node(node) for node in text_nodes]
+            #print(html_nodes)
+            list_items.append(ParentNode("li",html_nodes))
+            
         return ParentNode("ul", list_items)
+        #return ParentNode("ul", [text_node_to_html_node(text_node) for text_node in text_to_textnodes(block)])
     
     elif block_type == BlockType.ORDERED_LIST:
         block = block.split("\n")
         list_items = []
         for item in block:
-            list_items.append(LeafNode("li", item))
+            item= item[2:]
+            text_nodes=text_to_textnodes(item)
+            html_nodes= [text_node_to_html_node(node) for node in text_nodes]
+            list_items.append(ParentNode("li",html_nodes))
+            # list_items.append(LeafNode("li", item))
         return ParentNode("ol", list_items)
-        
-        
-        
+    
         
 
 
-def text_to_textnodes(text): #AGGREGATOR
+def text_to_textnodes(text): #EXTRACTOR AGGREGATOR
     testNode= TextNode(text, TextType.TEXT)
     #print(f"TESTNODE MADE- {testNode}")
     testNode= splitNodeDelimiter([testNode],"`", TextType.CODE)

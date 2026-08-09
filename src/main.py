@@ -2,6 +2,7 @@ import os
 import shutil
 import pathlib
 import re
+from converterMDtoNodes import markdown_to_html_node
 
 def extract_heading(markdown):
     heading = re.findall(r"^# (.*?)$", markdown, re.MULTILINE) 
@@ -12,21 +13,30 @@ def extract_heading(markdown):
     return heading[0].strip()
     
     
+def generate_page(from_path, template_path, dest_path):
+    #print(f"generating page from {from_path} to {dest_path} using {template_path}")
+    
+    f= open(from_path,"r") #reading Markdown
+    extractedMarkdown = f.read()
+    f.close()
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    f=open(template_path,"r")
+    extractedTemplate = f.read()
+    f.close()
+    
+    convertedHTML = markdown_to_html_node(extractedMarkdown).to_html()
+    websiteTitle = extract_heading(extractedMarkdown)
+    
+    firstConverstion= extractedTemplate.replace("{{ Title }}", websiteTitle)
+    secondConversion = firstConverstion.replace("{{ Content }}", convertedHTML)
+    
+    HTMLfilePath= os.path.join(dest_path, "index.html")
+    f=open(HTMLfilePath,"w")
+    f.write(secondConversion)
+    f.close()
+    
 
 
 def staticToPublicFileCopy():
@@ -35,12 +45,10 @@ def staticToPublicFileCopy():
     staticPath = pathlib.Path(__file__).parent.parent / "static"
     
     if(os.path.exists(publicPath) and os.path.isdir(publicPath)):
-        # print(os.listdir(publicPath))
-        # print(f"Deleting public folder at: {publicPath}")
+        #print(os.listdir(publicPath))
         shutil.rmtree(publicPath)
         os.makedirs(publicPath)
     if(os.path.exists(staticPath) and os.path.isdir(staticPath)):
-        #print(os.listdir(staticPath))
         recursiveCopy(staticPath,publicPath)
         # shutil.copytree(staticPath, publicPath, dirs_exist_ok=True)  #this would also work just without logging file change
     #print(f"Deleting public folder at: {publicPath}, and static folder at: {staticPath}")
@@ -60,6 +68,24 @@ def recursiveCopy(src, dest):
             
 
 def main():
-    staticToPublicFileCopy()    
+    staticToPublicFileCopy()
+    publicPath = pathlib.Path(__file__).parent.parent / "public"
+    contentPath = pathlib.Path(__file__).parent.parent / "content"
+    parentPath = pathlib.Path(__file__).parent.parent
+    
+    
+    templatePath= os.path.join(parentPath, "template.html")
+    markdownPath = os.path.join(contentPath, "index.md")
+    
+    
+    
+    #first is markdown - content/index.md
+    #second is template.html
+    #third is public
+    
+    # if os.path.isfile(markdownPath):
+    #     print(f"SUCCESS {markdownPath}")
+        
+    generate_page(markdownPath, templatePath, publicPath)
     
 main()

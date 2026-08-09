@@ -8,8 +8,8 @@ def markdown_to_blocks(text):
     for block in extractedBlocks:
         lines = block.split("\n")
 
-        stripedLine = [line.strip() for line in lines]
-        cleanedBlock = "\n".join(stripedLine).strip()
+        Line = [line for line in lines]
+        cleanedBlock = "\n".join(Line).strip()
 
         if cleanedBlock:
             processedBlocks.append(cleanedBlock)
@@ -32,7 +32,7 @@ def block_to_blockType(block):
     if re.match(r"^#{1,6} .+$", block):
         return BlockType.HEADING
     
-    if block.startswith("```\n") and block.endswith("\n```"):
+    if block.startswith("```\n") and block.endswith("```"):
         return BlockType.CODE
     
     subParts = block.split("\n")

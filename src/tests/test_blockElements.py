@@ -13,12 +13,13 @@ class TestMarkdownToBlockConversion(unittest.TestCase):
                     - with items
                     """
             blocks = markdown_to_blocks(md)
+            #print(blocks)
             self.assertEqual(
                 blocks,
                 [
                     "This is **bolded** paragraph",
-                    "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
-                    "- This is a list\n- with items",
+                    "This is another paragraph with _italic_ text and `code` here\n                    This is the same paragraph on a new line",
+                    "- This is a list\n                    - with items",
                 ],
         )
             
@@ -40,8 +41,8 @@ class TestMarkdownToBlockConversion(unittest.TestCase):
                 blocks,
                 [
                     "This is **bolded paragraph",
-                    "This is another paragraph with _italic_ text and `code here\nThis is the same paragraph on a new line",
-                    "- This is a list\n- with items",
+                    "This is another paragraph with _italic_ text and `code here\n                    This is the same paragraph on a new line",
+                    "- This is a list\n                    - with items",
                 ],
         )
             
