@@ -37,6 +37,72 @@ def generate_page(from_path, template_path, dest_path):
     f.write(secondConversion)
     f.close()
     
+    
+def generate_page_recursively(content_dir, template_path, public_dir):
+    for item in os.listdir(content_dir):
+        content_path = os.path.join(content_dir, item)
+
+        if os.path.isdir(content_path):
+            public_subdir = os.path.join(public_dir, item)
+            os.makedirs(public_subdir, exist_ok=True)
+
+            generate_page_recursively(
+                content_path,
+                template_path,
+                public_subdir
+            )
+
+        elif item.endswith(".md"):
+            name = os.path.splitext(item)[0]
+
+            if name == "index":
+                destination_dir = public_dir
+            else:
+                destination_dir = os.path.join(public_dir, name)
+
+            os.makedirs(destination_dir, exist_ok=True)
+
+            generate_page(
+                content_path,
+                template_path,
+                destination_dir
+            )    
+# def generate_page_recursively(dir_path_content, template_path, dest_dir_path):
+#     subDirList=os.listdir(dir_path_content)
+#     for i in subDirList:
+#         subDirectoryContentPath = os.path.join(dir_path_content,i)
+#         #HTMLdestFilePath= os.path.join(dest_dir_path, "index.html")
+#         HTMLdestFilePath= dest_dir_path
+#         #print(i)
+#         if os.path.isdir(subDirectoryContentPath):
+#             os.mkdir(os.path.join(dest_dir_path,i))
+#             HTMLdestFilePath= os.path.join(dest_dir_path, f"{HTMLdestFilePath}/index.html")
+#             generate_page_recursively(subDirectoryContentPath, template_path, HTMLdestFilePath)
+#             continue
+            
+#         f= open(subDirectoryContentPath,"r") #reading Markdown
+#         extractedMarkdown = f.read()
+#         f.close()
+        
+        
+#         f=open(template_path,"r")
+#         extractedTemplate = f.read()
+#         f.close()
+        
+#         convertedHTML = markdown_to_html_node(extractedMarkdown).to_html()
+#         websiteTitle = extract_heading(extractedMarkdown)
+        
+#         firstConverstion= extractedTemplate.replace("{{ Title }}", websiteTitle)
+#         secondConversion = firstConverstion.replace("{{ Content }}", convertedHTML)
+        
+        
+
+#         # HTMLdestFilePath= os.path.join(dest_dir_path, f"{i}/index.html")
+#         print(f"hence the path is {HTMLdestFilePath}")
+#         f=open(HTMLdestFilePath,"w")
+#         f.write(secondConversion)
+#         f.close()
+    
 
 
 def staticToPublicFileCopy():
@@ -75,10 +141,11 @@ def main():
     
     
     templatePath= os.path.join(parentPath, "template.html")
-    markdownPath = os.path.join(contentPath, "index.md")
+    #markdownPath = os.path.join(contentPath, "index.md")
     
     
-    
+    print(f"before hand {publicPath}")
+    generate_page_recursively(contentPath, templatePath, publicPath)
     #first is markdown - content/index.md
     #second is template.html
     #third is public
@@ -86,6 +153,6 @@ def main():
     # if os.path.isfile(markdownPath):
     #     print(f"SUCCESS {markdownPath}")
         
-    generate_page(markdownPath, templatePath, publicPath)
+    #generate_page(markdownPath, templatePath, publicPath)
     
 main()
