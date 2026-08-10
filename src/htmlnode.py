@@ -66,8 +66,8 @@ class ParentNode(HTMLNode):
 
 def main():
     node = HTMLNode(tag="div", value="Hello world", children=[], props={"class": "my-class", "id": "my-id"})
-    print(node.props_to_html())
-    print("hello")
+    # print(node.props_to_html())
+    # print("hello")
 
 if __name__ == "__main__":
     main()

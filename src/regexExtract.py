@@ -96,6 +96,6 @@ def main():
     newNodeList = splitNodeLink([node])
     # print(t)
 
-    print(newNodeList)
+   # print(newNodeList)
 
 # main()

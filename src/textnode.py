@@ -48,7 +48,7 @@ def text_node_to_html_node(text_node: TextNode) -> LeafNode:
 
 def main():
     node = TextNode("Hello world", TextType.PLAIN, None)
-    print(node)
+    #print(node)
 
 #main()
 

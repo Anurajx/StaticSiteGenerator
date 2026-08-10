@@ -1,8 +1,8 @@
 # Anuraj Upadhyay
 
-![JRR Tolkien sitting](/images/tolkien.png)
+![JRR Tolkien sitting](/images/dune.jpeg)
 
-Here's the deal, **I like Tolkien**.
+Here's the deal, **I like days like these**.
 
 > "I am in fact a Hobbit in all but size."
 >
