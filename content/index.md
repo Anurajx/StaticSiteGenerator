@@ -1,46 +1,67 @@
 # Anuraj Upadhyay
 
-![JRR Tolkien sitting](/images/dune.jpeg)
+![Profile picture](/images/pfp.avif)
 
-Here's the deal, **I like days like these**.
+> _Software developer focused on building scalable projects, managing infrastructure, and improving deployment workflows._
 
-> "I am in fact a Hobbit in all but size."
->
-> -- J.R.R. Tolkien
+> _This website is generated through an static site generator built by me._
 
-## Blog posts
+New Delhi • SWE
 
-- [Why Glorfindel is More Impressive than Legolas](/blog/glorfindel)
-- [Why Tom Bombadil Was a Mistake](/blog/tom)
-- [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
+## Education
 
-## Reasons I like Tolkien
+### MSIT, Indraprastha University
 
-- You can spend years studying the legendarium and still not understand its depths
-- It can be enjoyed by children and adults alike
-- Disney _didn't ruin it_ (okay, but Amazon might have)
-- It created an entirely new genre of fantasy
+B.Tech in Information Technology, 2028
 
-## My favorite characters (in order)
+### Air Force Golden Jubilee Institute
 
-1. Gandalf
-2. Bilbo
-3. Sam
-4. Glorfindel
-5. Galadriel
-6. Elrond
-7. Thorin
-8. Sauron
-9. Aragorn
+Class 12th PCM & CS, 2023
 
-Here's what `elflang` looks like (the perfect coding language):
+## Experience & Projects
 
-```
-func main(){
-    fmt.Println("Aiya, Ambar!")
-}
-```
+### Intern @ Airport Authority of India
 
-Want to get in touch? [Contact me here](/contact).
+Jul-Aug 2026
 
-This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev).
+- Collaborated with the Information Technology Department at the Regional Headquarters (Northern Region), IGI Airport, to analyze mission-critical aviation infrastructure and network architectures.
+- Explored real-time monitoring solutions and database management strategies used to support one of India's busiest aviation hubs.
+
+### Delhi Underground
+
+Sep 2025
+
+- Delhi Underground is built with **Flutter**, offering a clean and intuitive interface for users to find routes and information about stations, along with a map of the network and ticket redirection.
+- Explored **GTFS data integration** used to support one of India's busiest metro networks with 270 stations and 8 million passengers.
+- Implemented **Dijkstra's algorithm** to route passengers through the network.
+- Explored optimization techniques for better user experience, with a focus on UI to differentiate it from other options.
+
+## Activities
+
+### VC @ IEEE MSIT
+
+2026-27
+
+- Collaborated with cross-functional teams to execute digital campaigns for major events like hackathons, ensuring seamless technical integration and real-time updates to the website.
+- Led a team of developers to design, develop, and maintain the official IEEE MSIT website, ensuring uptime and high performance for student members.
+
+### Events
+
+- Member of multiple other societies in college including **Google Developer Student Clubs** and **Microsoft Student Chapter**.
+- Participated in multiple national level Hackathons and positioned as top teams.
+
+## Skills & Interests
+
+### Technical
+
+- **Languages:** TypeScript, JavaScript, Python, Java, C, HTML, CSS, Dart
+- **Technologies:** ReactJS, NodeJS, ExpressJS, Flutter, VS Code, IntelliJ IDEA, WSL, Android Studio
+
+### Professional IDs
+
+- [GitHub](https://github.com/anurajx)
+- [LinkedIn](https://www.linkedin.com/in/anurajupadhyay)
+
+## Contact
+
+Want to get in touch? [anurajupadhyay6@gmail.com](mailto:anurajupadhyay6@gmail.com).

@@ -119,7 +119,10 @@ def main():
     parentPath = pathlib.Path(__file__).parent.parent
     
     
-    basePath= sys.argv[1]
+    try:
+        basePath= sys.argv[1]
+    except:
+        basePath="/"
     if not basePath:
         basePath="/"
     print(basePath)

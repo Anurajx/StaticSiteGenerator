@@ -1,130 +1,317 @@
+@font-face {
+  font-family: "Helvetica";
+  src: url("/font/Helvetica.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica-Bold";
+  src: url("/font/Helvetica-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
-  background-color: #1f1c25;
-  color: #f0e6d1;
-  font-family: "Luminari", "Georgia", serif;
-  line-height: 1.7;
-  margin: 0;
-  padding: 20px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  color: #fffcebbb;
+  background-color: #0e0e0e;
+
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+
+  max-width: 910px;
+  margin: 0 auto;
+  padding: 60px 20px 30px 20px;
 }
 
-b {
-  font-weight: 900;
+article {
+  width: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #dda15e;
-  margin-top: 24px;
-  margin-bottom: 16px;
-  text-shadow: 2px 2px 4px #000;
+article > div {
+  width: 100%;
 }
+
+/* =========================
+  NAME + PROFILE PICTURE
+ ========================= */
 
 h1 {
-  font-size: 2.5em;
+  display: inline-block;
+  vertical-align: middle;
+
+  color: #fffceb64;
+  font-family: "Helvetica", Arial, sans-serif;
+
+  font-size: 28px;
+  line-height: 64px;
+  font-weight: 600;
+
+  margin: 20px 0 25px 0;
 }
 
-h2 {
-  font-size: 2em;
+h1 + p {
+  display: inline-block;
+  vertical-align: middle;
+
+  float: right;
+
+  margin: 20px 0 0 0;
 }
 
-h3 {
-  font-size: 1.5em;
-}
+h1 + p img {
+  display: block;
 
-h4,
-h5,
-h6 {
-  font-size: 1.2em;
-}
+  width: 64px;
+  height: 64px;
 
-a {
-  color: #e0a96d;
-  text-decoration: none;
-  border-bottom: 2px solid #e0a96d;
-}
+  object-fit: cover;
+  border-radius: 50%;
 
-a:hover {
-  color: #f4a261;
-  border-color: #f4a261;
+  border: none;
+  box-shadow: none;
 }
-
-ul,
-ol {
-  padding-left: 30px;
-}
-
-code {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  color: #e9c46a;
-  padding: 0.4em 0.6em;
-  font-family: "Courier New", monospace;
-}
-
-pre code {
-  padding: 0;
-}
-
-pre {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  padding: 1em;
-  overflow: auto;
-  box-shadow: 2px 2px 6px #000;
-}
+/* =========================
+  INTRO QUOTE
+ ========================= */
 
 blockquote {
-  background-color: #2e2c35;
-  border-left: 4px solid #8d99ae;
-  padding-left: 2em;
-  margin-left: 0;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-right: 0.5em;
-  color: #ddd;
-  font-style: italic;
+  margin: 18px 0 18px 0;
+  padding-left: 18px;
+
+  border-left: 2px solid #ff5722;
+
+  color: #fffdf0bb;
 }
+
+blockquote + p {
+  padding-bottom: 50px;
+  border-bottom: 2px solid #ff5722;
+}
+
+/* =========================
+  NORMAL PARAGRAPHS
+ ========================= */
+
+p {
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+/* =========================
+  SECTION HEADINGS
+ ========================= */
+
+h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  font-family: "Helvetica", Arial, sans-serif;
+
+  margin-top: 28px;
+  margin-bottom: 22px;
+
+  padding-top: 20px;
+  color: #fffceb64;
+  /* border-top: 1px solid #aaaaaa; */
+}
+
+/* =========================
+  ITEM HEADINGS
+ ========================= */
+
+h3 {
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #fffcebbb;
+
+  margin-top: 20px;
+  margin-bottom: 3px;
+}
+
+/* =========================
+  DATES
+ ========================= */
+
+h3 + p {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+h3 + p b {
+  font-weight: 600;
+}
+
+/* =========================
+  EDUCATION
+ ========================= */
+
+h2 + h3 {
+  margin-top: 4px;
+}
+
+h2 + h3 + p {
+  margin-bottom: 14px;
+}
+
+/* =========================
+  PROJECT / COMPANY IMAGES
+ ========================= */
+
+/* Airport Authority logo */
+
+h3 + p + p img {
+  width: auto;
+  height: 35px;
+
+  max-width: 75px;
+
+  object-fit: contain;
+
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Project logos */
+
+h3 + p + p {
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+h3 + p + p img {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: auto;
+  height: 38px;
+
+  max-width: 100px;
+
+  margin-right: 10px;
+
+  object-fit: contain;
+
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* =========================
+  ALL OTHER IMAGES
+ ========================= */
 
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
-  border: 3px solid #3c3c42;
-  box-shadow: 3px 3px 6px #000;
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+/* =========================
+  LISTS
+ ========================= */
+
+ul,
+ol {
+  margin-top: 10px;
+  margin-bottom: 18px;
+
+  padding-left: 68px;
 }
 
-::-webkit-scrollbar-track {
-  background: #1f1c25;
-  border-radius: 6px;
+li {
+  margin-bottom: 4px;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  border: 3px solid #1f1c25;
+/* =========================
+  LINKS
+ ========================= */
+
+a {
+  color: #ff5722;
+  text-decoration: none;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #5a5466;
+a:hover {
+  text-decoration: underline;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #3c3c42 #1f1c25;
+/* =========================
+  BOLD
+ ========================= */
+
+b {
+  font-weight: 700;
 }
 
-::-webkit-scrollbar-corner {
-  background: #1f1c25;
+/* =========================
+  INLINE CODE
+ ========================= */
+
+code {
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+
+  background-color: #f2f2f2;
+
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+
+  padding: 2px 5px;
+}
+
+/* =========================
+  CODE BLOCKS
+ ========================= */
+
+pre {
+  background-color: #111111;
+  color: #ffffff;
+
+  padding: 16px;
+  margin: 18px 0;
+
+  overflow-x: auto;
+  border-radius: 2px;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  color: inherit;
+
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================
+  MOBILE
+ ========================= */
+
+@media (max-width: 700px) {
+  body {
+    padding: 40px 16px 20px 16px;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 56px;
+    margin-left: 10px;
+  }
+
+  h1 + p img {
+    width: 56px;
+    height: 56px;
+  }
+
+  ul,
+  ol {
+    padding-left: 28px;
+  }
 }
