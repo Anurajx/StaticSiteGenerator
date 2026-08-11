@@ -2,7 +2,7 @@
 
 # python3 src/main.py
 
-# python3 src/main.py
+# python3 src/main.py  #USE THIS FOR LOCAL TESTING
 # cd public && python3 -m http.server 8888
 
 python3 src/main.py "/StaticSiteGenerator/"

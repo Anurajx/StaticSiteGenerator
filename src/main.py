@@ -72,6 +72,7 @@ def generate_page_recursively(dir_path_content, template_path, dest_dir_path, ba
         
         firstConverstion = extractedTemplate.replace("{{ Title }}", websiteTitle)
         secondConversion = firstConverstion.replace("{{ Content }}", convertedHTML)
+        
         thirdConversion = secondConversion.replace("""href="/""", f"""href="{basePath}""")
         fourthConversion = thirdConversion.replace("""src="/""", f"""src="{basePath}""")
         
@@ -118,7 +119,7 @@ def main():
     parentPath = pathlib.Path(__file__).parent.parent
     
     
-    basePath= sys.argv[0]
+    basePath= sys.argv[1]
     if not basePath:
         basePath="/"
     print(basePath)
