@@ -29,12 +29,22 @@ Jul-Aug 2026
 
 ### Delhi Underground
 
-Sep 2025
+Sep 2025 [more >](/projects/DelhiUnderground)
 
 - Delhi Underground is built with **Flutter**, offering a clean and intuitive interface for users to find routes and information about stations, along with a map of the network and ticket redirection.
 - Explored **GTFS data integration** used to support one of India's busiest metro networks with 270 stations and 8 million passengers.
 - Implemented **Dijkstra's algorithm** to route passengers through the network.
 - Explored optimization techniques for better user experience, with a focus on UI to differentiate it from other options.
+
+### Delhi Overground
+
+July 2026 [more >](/projects/DelhiOverground)
+
+- Delhi Overground is built with **Flutter** for DTC and DIMTS bus routes across Delhi NCR.
+- Supports **OTA asset updates**, keeping app data up to date without requiring a new app release.
+- Provides **dynamic route finding** between any two points in Delhi NCR, showing a route only when buses are running at that time of day.
+- Provides **live bus departures** from any bus stop.
+- Includes **ticket redirection** for accessing ticketing options, while fully integrated in-app ticketing is not currently available.
 
 ## Activities
 
