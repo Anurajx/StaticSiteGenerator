@@ -78,7 +78,7 @@ def generate_page_recursively(dir_path_content, template_path, dest_dir_path, ba
         
         HTMLfilePath= os.path.join(dest_dir_path, "index.html")
         f=open(HTMLfilePath,"w")
-        f.write(secondConversion)
+        f.write(fourthConversion)
         f.close()
     
 
