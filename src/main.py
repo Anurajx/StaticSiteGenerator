@@ -2,7 +2,12 @@ import os
 import shutil
 import pathlib
 import re
+import sys
 from converterMDtoNodes import markdown_to_html_node
+
+
+
+
 
 def extract_heading(markdown):
     heading = re.findall(r"^# (.*?)$", markdown, re.MULTILINE) 
@@ -13,7 +18,7 @@ def extract_heading(markdown):
     return heading[0].strip()
     
     
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basePath):# NOT CURRENTLY USED
     #print(f"generating page from {from_path} to {dest_path} using {template_path}")
     
     f= open(from_path,"r") #reading Markdown
@@ -40,7 +45,7 @@ def generate_page(from_path, template_path, dest_path):
 
 
 
-def generate_page_recursively(dir_path_content, template_path, dest_dir_path):
+def generate_page_recursively(dir_path_content, template_path, dest_dir_path, basePath):
     
     subDirList=os.listdir(dir_path_content)
     for i in subDirList:
@@ -48,7 +53,7 @@ def generate_page_recursively(dir_path_content, template_path, dest_dir_path):
         if os.path.isdir(subDirectoryContentPath):
             destFolderToCreate = os.path.join(dest_dir_path,i)
             os.mkdir(destFolderToCreate)
-            generate_page_recursively(subDirectoryContentPath, template_path, destFolderToCreate)
+            generate_page_recursively(subDirectoryContentPath, template_path, destFolderToCreate, basePath)
             continue
         
         # if os.path.isdir(subDirectoryContentPath):
@@ -65,8 +70,10 @@ def generate_page_recursively(dir_path_content, template_path, dest_dir_path):
         convertedHTML = markdown_to_html_node(extractedMarkdown).to_html()
         websiteTitle = extract_heading(extractedMarkdown)
         
-        firstConverstion= extractedTemplate.replace("{{ Title }}", websiteTitle)
+        firstConverstion = extractedTemplate.replace("{{ Title }}", websiteTitle)
         secondConversion = firstConverstion.replace("{{ Content }}", convertedHTML)
+        thirdConversion = secondConversion.replace("""href="/""", f"""href="{basePath}""")
+        fourthConversion = thirdConversion.replace("""src="/""", f"""src="{basePath}""")
         
         
         HTMLfilePath= os.path.join(dest_dir_path, "index.html")
@@ -78,7 +85,7 @@ def generate_page_recursively(dir_path_content, template_path, dest_dir_path):
 
 def staticToPublicFileCopy():
     #print("Hello, World!")
-    publicPath = pathlib.Path(__file__).parent.parent / "public"
+    publicPath = pathlib.Path(__file__).parent.parent / "docs" #prev public
     staticPath = pathlib.Path(__file__).parent.parent / "static"
     
     if(os.path.exists(publicPath) and os.path.isdir(publicPath)):
@@ -106,12 +113,19 @@ def recursiveCopy(src, dest):
 
 def main():
     staticToPublicFileCopy()
-    publicPath = pathlib.Path(__file__).parent.parent / "public"
+    publicPath = pathlib.Path(__file__).parent.parent / "docs" #prev public
     contentPath = pathlib.Path(__file__).parent.parent / "content"
     parentPath = pathlib.Path(__file__).parent.parent
     
     
-    templatePath= os.path.join(parentPath, "template.html")
-    generate_page_recursively(contentPath, templatePath, publicPath)
+    basePath= sys.argv[0]
+    if not basePath:
+        basePath="/"
+    print(basePath)
     
+    templatePath= os.path.join(parentPath, "template.html")
+    generate_page_recursively(contentPath, templatePath, publicPath, basePath)
+    
+
+
 main()
