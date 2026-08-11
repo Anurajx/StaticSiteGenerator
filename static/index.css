@@ -36,7 +36,6 @@ article > div {
 /* =========================
   NAME + PROFILE PICTURE
  ========================= */
-
 h1 {
   display: inline-block;
   vertical-align: middle;
@@ -46,18 +45,17 @@ h1 {
 
   font-size: 28px;
   line-height: 64px;
-  font-weight: 600;
+  font-weight: 500;
 
-  margin: 20px 0 25px 0;
+  margin: 0;
 }
 
 h1 + p {
   display: inline-block;
+  float: right;
   vertical-align: middle;
 
-  float: right;
-
-  margin: 20px 0 0 0;
+  margin: 0;
 }
 
 h1 + p img {
