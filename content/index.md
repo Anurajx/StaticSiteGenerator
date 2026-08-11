@@ -4,7 +4,7 @@
 
 > _Software developer focused on building scalable projects, managing infrastructure, and improving deployment workflows._
 
-> _This website is generated through an static site generator built by me._
+> [blogs >](/projects/DelhiUnderground)
 
 New Delhi • SWE
 
@@ -45,20 +45,6 @@ July 2026 [more >](/projects/DelhiOverground)
 - Provides **dynamic route finding** between any two points in Delhi NCR, showing a route only when buses are running at that time of day.
 - Provides **live bus departures** from any bus stop.
 - Includes **ticket redirection** for accessing ticketing options, while fully integrated in-app ticketing is not currently available.
-
-## Activities
-
-### VC @ IEEE MSIT
-
-2026-27
-
-- Collaborated with cross-functional teams to execute digital campaigns for major events like hackathons, ensuring seamless technical integration and real-time updates to the website.
-- Led a team of developers to design, develop, and maintain the official IEEE MSIT website, ensuring uptime and high performance for student members.
-
-### Events
-
-- Member of multiple other societies in college including **Google Developer Student Clubs** and **Microsoft Student Chapter**.
-- Participated in multiple national level Hackathons and positioned as top teams.
 
 ## Skills & Interests
 

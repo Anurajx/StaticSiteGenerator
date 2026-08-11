@@ -22,7 +22,7 @@ body {
 
   max-width: 910px;
   margin: 0 auto;
-  padding: 60px 20px 30px 20px;
+  padding: 30px 20px 30px 20px;
 }
 
 article {
@@ -43,8 +43,7 @@ h1 {
   color: #fffceb64;
   font-family: "Helvetica", Arial, sans-serif;
 
-  font-size: 28px;
-  line-height: 64px;
+  font-size: 26px;
   font-weight: 500;
 
   margin: 0;
@@ -76,7 +75,7 @@ h1 + p img {
 
 blockquote {
   margin: 18px 0 18px 0;
-  padding-left: 18px;
+  padding-left: 12px;
 
   border-left: 2px solid #ff5722;
 
@@ -84,7 +83,7 @@ blockquote {
 }
 
 blockquote + p {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   border-bottom: 2px solid #ff5722;
 }
 
