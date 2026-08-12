@@ -1,6 +1,6 @@
 # Delhi Underground
 
-[< Back Home](/)
+[< Back](/)
 
 > An intuitive metro app for **Delhi NCR**, designed to make finding routes, exploring stations, and navigating the network easier.
 

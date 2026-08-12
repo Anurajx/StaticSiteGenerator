@@ -1,6 +1,6 @@
 # Delhi Overground
 
-[< Back Home](/)
+[< Back](/)
 
 > An intuitive public bus app for **Delhi NCR**, designed to make finding routes, exploring stops, and navigating the city's bus network easier.
 
