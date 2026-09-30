@@ -61,3 +61,5 @@ July 2026 [more >](/projects/DelhiOverground)
 ## Contact
 
 Want to get in touch? [anurajupadhyay6@gmail.com](mailto:anurajupadhyay6@gmail.com).
+
+> `website made with` [SSR](https://github.com/Anurajx/StaticSiteGenerator)
