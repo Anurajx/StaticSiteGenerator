@@ -40,13 +40,18 @@ h1 {
   display: inline-block;
   vertical-align: middle;
 
-  color: #fffceb64;
   font-family: "Helvetica", Arial, sans-serif;
-
   font-size: 26px;
   font-weight: 500;
 
   margin: 0;
+
+  /* gradient text: your orange sliding into hot pink and soft violet */
+  color: #ff5722; /* fallback for browsers without background-clip support */
+  background: linear-gradient(90deg, #ff5722 0%, #ff2d95 55%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1 + p {
